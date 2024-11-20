@@ -1,0 +1,101 @@
+<form id="dataForm" method="POST" action="/submit">
+</form>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario de Carga de Datos - Ingeniería en Sistemas</title>
+</head>
+<body>
+
+    <h1>Formulario de Carga de Datos</h1>
+
+    <form id="dataForm">
+        <!-- Datos personales -->
+        <h2>Información Personal</h2>
+        <label for="name">Nombre:</label>
+        <input type="text" id="name" name="name" required><br><br>
+
+        <label for="email">Correo Electrónico:</label>
+        <input type="email" id="email" name="email" required><br><br>
+
+        <!-- Preguntas sobre Ingeniería en Sistemas -->
+        <h2>Preguntas sobre Ingeniería en Sistemas</h2>
+
+        <label for="programmingLanguages">¿Qué lenguajes de programación dominas?</label><br>
+        <input type="text" id="programmingLanguages" name="programmingLanguages" required><br><br>
+
+        <label for="projects">¿Has trabajado en proyectos de desarrollo de software? Descríbelos brevemente.</label><br>
+        <input type="text" id="projects" name="projects" required><br><br>
+
+        <label for="careerInterest">¿Por qué elegiste la carrera de Ingeniería en Sistemas?</label><br>
+        <input type="text" id="careerInterest" name="careerInterest" required><br><br>
+
+        <label for="futureGoals">¿Cuáles son tus metas a futuro como Ingeniero en Sistemas?</label><br>
+        <input type="text" id="futureGoals" name="futureGoals" required><br><br>
+
+        <!-- Nuevas preguntas -->
+        <label for="preferredTechnologies">¿Cuáles son las tecnologías que más te interesan en el campo de la ingeniería en sistemas?</label><br>
+        <input type="text" id="preferredTechnologies" name="preferredTechnologies" required><br><br>
+
+        <label for="problemSolving">¿Cómo abordas la resolución de problemas complejos cuando trabajas en proyectos de programación?</label><br>
+        <input type="text" id="problemSolving" name="problemSolving" required><br><br>
+
+        <label for="teamworkExperience">¿Tienes experiencia trabajando en equipo? ¿Cómo manejas los desafíos en proyectos colaborativos?</label><br>
+        <input type="text" id="teamworkExperience" name="teamworkExperience" required><br><br>
+
+        <label for="learningApproach">¿Cómo te mantienes actualizado con los avances tecnológicos y las nuevas tendencias en el campo de la ingeniería en sistemas?</label><br>
+        <input type="text" id="learningApproach" name="learningApproach" required><br><br>
+
+        <label for="softwareDevelopmentMethodologies">¿Estás familiarizado con metodologías ágiles de desarrollo de software, como Scrum o Kanban? ¿Cuál prefieres y por qué?</label><br>
+        <input type="text" id="softwareDevelopmentMethodologies" name="softwareDevelopmentMethodologies" required><br><br>
+
+        <label for="workWithDatabases">¿Tienes experiencia trabajando con bases de datos? ¿Qué sistemas de gestión de bases de datos prefieres?</label><br>
+        <input type="text" id="workWithDatabases" name="workWithDatabases" required><br><br>
+
+        <label for="interestInAI">¿Qué opinas sobre la inteligencia artificial y cómo crees que influirá en la Ingeniería en Sistemas en el futuro?</label><br>
+        <input type="text" id="interestInAI" name="interestInAI" required><br><br>
+
+        <button type="submit">Enviar</button>
+    </form>
+
+    <script>
+        // Obtener el formulario y agregar el manejador de eventos
+        document.getElementById('dataForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Evitar que el formulario se envíe de la forma tradicional
+
+            // Realizar la solicitud fetch para enviar los datos
+            fetch('/submit', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    name: document.getElementById('name').value,
+                    email: document.getElementById('email').value,
+                    programmingLanguages: document.getElementById('programmingLanguages').value,
+                    projects: document.getElementById('projects').value,
+                    careerInterest: document.getElementById('careerInterest').value,
+                    futureGoals: document.getElementById('futureGoals').value,
+                    preferredTechnologies: document.getElementById('preferredTechnologies').value,
+                    problemSolving: document.getElementById('problemSolving').value,
+                    teamworkExperience: document.getElementById('teamworkExperience').value,
+                    learningApproach: document.getElementById('learningApproach').value,
+                    softwareDevelopmentMethodologies: document.getElementById('softwareDevelopmentMethodologies').value,
+                    workWithDatabases: document.getElementById('workWithDatabases').value,
+                    interestInAI: document.getElementById('interestInAI').value
+                })
+            })
+            .then(response => response.json())  // Convertir la respuesta a formato JSON
+            .then(data => {
+                console.log('Success:', data);  // Mostrar la respuesta en consola
+            })
+            .catch((error) => {
+                console.error('Error:', error);  // Mostrar errores en consola
+            });
+        });
+    </script>
+
+</body>
+</html>
